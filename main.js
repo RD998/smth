@@ -16,7 +16,7 @@ async function submitComplaint(event) {
 
     try {
         // 4. Send the POST request
-        const response = await fetch("http://localhost:8000/complaints", {
+        const response = await fetch("https://whistle-drop-api.onrender.com/complaints", {
             method: "POST", // Tell the server we are creating new data
             headers: {
                 "Content-Type": "application/json" // Tell the server to expect JSON
