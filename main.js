@@ -1,46 +1,55 @@
+// --- SUBMIT COMPLAINT LOGIC ---
 async function submitComplaint(event) {
-    // 1. Prevent the form from refreshing the page
     event.preventDefault();
 
-    // 2. Grab the data the user typed in
-    const category = document.getElementById("categoryInput").value;
-    const description = document.getElementById("descInput").value;
-    const url = document.getElementById("urlInput").value;
+    const resultBox = document.getElementById("submissionResult");
+    const form = document.getElementById("complaintForm");
 
-    // 3. Package it into a JavaScript object exactly as FastAPI expects
+    resultBox.innerText = "Submitting (this may take a few seconds)...";
+    resultBox.style.color = "black";
+
+    // Grab the URL and remove any accidental spaces
+    let urlValue = document.getElementById("urlInput").value.trim();
+
     const payload = {
-        category: category,
-        description: description,
-        url: url === "" ? null : url  // FastAPI wants null if it's empty, not an empty string
+        category: document.getElementById("categoryInput").value,
+        description: document.getElementById("descInput").value,
+        url: urlValue === "" ? null : urlValue
     };
 
     try {
-        // 4. Send the POST request
         const response = await fetch("https://whistle-drop-api.onrender.com/complaints", {
-            method: "POST", // Tell the server we are creating new data
+            method: "POST",
             headers: {
-                "Content-Type": "application/json" // Tell the server to expect JSON
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(payload) // Convert the JS object into a raw JSON string
+            body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
-
-        // 5. Handle the response
+        // 1. If it was successful
         if (response.ok) {
-            // Display the hex code so the user can save it
-            document.getElementById("submissionResult").innerText = 
-                `Success! Your tracking hex code is: ${data.hex_code}. Please save this somewhere safe.`;
+            const data = await response.json();
+            resultBox.innerHTML = `
+                <span style="color: green;">Success! Your tracking code is:</span><br>
+                <span style="font-size: 24px; color: #0056b3; letter-spacing: 2px;">${data.hex_code}</span><br>
+                <span style="color: red; font-size: 14px;">Save this code! You cannot recover it later.</span>
+            `;
+            form.reset();
+        } 
+        // 2. IF FASTAPI REJECTS THE DATA (Bad Request)
+        else {
+            // Read the raw text of the error so JS doesn't crash
+            const errorText = await response.text(); 
+            console.error("Server Error:", errorText);
             
-            // Clear the form for the next user
-            document.getElementById("complaintForm").reset();
-        } else {
-            document.getElementById("submissionResult").innerText = "Error submitting complaint.";
-            document.getElementById("submissionResult").style.color = "red";
+            // Print the exact error to the screen
+            resultBox.innerText = `Backend rejected data (Status ${response.status}): ${errorText}`;
+            resultBox.style.color = "red";
         }
     } catch (error) {
-        document.getElementById("submissionResult").innerText = "Failed to connect to the server.";
-        document.getElementById("submissionResult").style.color = "red";
+        // 3. If the network completely fails
+        resultBox.innerText = `Browser/Code Error: ${error.message}`;
+        resultBox.style.color = "red";
     }
 }
 async function checkStatus() {
