@@ -52,41 +52,47 @@ async function submitComplaint(event) {
         resultBox.style.color = "red";
     }
 }
+// --- CHECK STATUS LOGIC ---
 async function checkStatus() {
-    // 1. Get the hex code the user typed in the box
-    const hexCode = document.getElementById("hexInput").value;
+    const hexCode = document.getElementById("hexInput").value.trim();
     const resultBox = document.getElementById("resultBox");
 
-    // Clear previous results while loading
-    resultBox.innerText = "Loading...";
+    if (!hexCode) {
+        resultBox.innerText = "Please enter a hex code.";
+        resultBox.style.color = "red";
+        return;
+    }
+
+    resultBox.innerText = "Searching (this may take a few seconds)...";
+    resultBox.style.color = "black";
 
     try {
-        // 2. Send the GET request to your FastAPI server
-        // (Assuming your Python server is running on localhost:8000)
-        const response = await fetch(`http://localhost:8000/complaints/${hexCode}`);
-
-        // 3. Check if the server found the complaint (Status 200 OK)
+        // Ensure this is exactly your Render URL
+        const response = await fetch(`https://whistle-drop-api.onrender.com/complaints/${hexCode}`);
+        
+        // 1. If it was successful
         if (response.ok) {
-            // Convert the raw response into a usable JSON object
             const data = await response.json();
-            
-            // 4. Update the HTML with the data you received
             resultBox.innerHTML = `
-                <p>Category: ${data.category}</p>
-                <p>Current Status: <span style="color: blue;">${data.status}</span></p>
+                <p>Category: <strong>${data.category}</strong></p>
+                <p>Status: <span style="color: #0056b3; font-size: 18px;">${data.status}</span></p>
             `;
         } 
-        // 5. Handle the 404 error if they typed the wrong hex code
+        // 2. If the hex code is just wrong
         else if (response.status === 404) {
-            resultBox.innerText = "Error: Complaint not found. Check your hex code.";
+            resultBox.innerText = "Complaint not found. Check your hex code.";
             resultBox.style.color = "red";
         } 
+        // 3. IF FASTAPI REJECTS IT (e.g., 422 Validation Error)
         else {
-            resultBox.innerText = "An unexpected error occurred.";
+            const errorText = await response.text(); 
+            resultBox.innerText = `Backend Error (${response.status}): ${errorText}`;
+            resultBox.style.color = "red";
         }
     } catch (error) {
-        // This catches network errors (e.g., if your Python server is turned off)
-        resultBox.innerText = "Failed to connect to the server.";
+        // 4. Print the exact browser error instead of a generic message
+        resultBox.innerText = `Browser/Code Error: ${error.message}`;
+        resultBox.style.color = "red";
     }
 }
 function goToCheckStatus() {
