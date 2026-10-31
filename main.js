@@ -89,3 +89,9 @@ async function checkStatus() {
         resultBox.innerText = "Failed to connect to the server.";
     }
 }
+function goToCheckStatus() {
+    window.location.href = "status.html";
+}
+function goToSubmit() {
+    window.location.href = "index.html";
+}
