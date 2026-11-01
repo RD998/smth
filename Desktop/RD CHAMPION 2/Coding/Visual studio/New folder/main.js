@@ -113,7 +113,7 @@ async function Login(){
     })
     if(response.ok){
          data = await response.json();
-        window.location.href = "admin.html";
+        window.location.href = "admin_dashboard.html";
         document.getElementById("complaint1").innerText=data.complaints;
         
     }
