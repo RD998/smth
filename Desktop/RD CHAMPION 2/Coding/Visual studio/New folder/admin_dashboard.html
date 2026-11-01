@@ -3,6 +3,8 @@
     <link rel="stylesheet" type="text/css" href="style2.css">
 </head>
 <body>
-    <h1 id="complaint1"></h1>
-    <script src="main.js"></script>
+    <p id="complaint1"></p>
+    <script src="main.js">window.onload()=function(){
+        document.getElementById("complaint1").innerHTML=sessionStorage.getItem("complaint18");
+    }</script>
 </body></html>

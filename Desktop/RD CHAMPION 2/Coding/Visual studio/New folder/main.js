@@ -113,8 +113,8 @@ async function Login(){
     })
     if(response.ok){
          data = await response.json();
+         sessionStorage.setItem("complaintData18", JSON.stringify(data.complaints));
         window.location.href = "admin_dashboard.html";
-        document.getElementById("complaint1").innerText=data.complaints;
         
     }
     else{
@@ -130,3 +130,4 @@ function user_login(){
     window.location.href="index.html";}
 function admin_login(){
     window.location.href="admin_login.html";}
+
