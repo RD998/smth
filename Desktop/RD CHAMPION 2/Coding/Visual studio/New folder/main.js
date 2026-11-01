@@ -113,8 +113,9 @@ async function Login(){
     })
     if(response.ok){
          data = await response.json();
+         console.log("Full Python Response:", data);
          sessionStorage.setItem("complaintData18", JSON.stringify(data.complaints));
-        window.location.href = "admin_dashboard.html";
+        //window.location.href = "admin_dashboard.html";
         
     }
     else{
