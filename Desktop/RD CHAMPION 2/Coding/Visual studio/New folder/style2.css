@@ -29,7 +29,7 @@ table{
     border-spacing: 0 0;
     color: white;
     background-color: rgb(16, 16, 16);
-    background-image: url("download.jpg");
+    
     table-layout: auto;
 }
 th{
