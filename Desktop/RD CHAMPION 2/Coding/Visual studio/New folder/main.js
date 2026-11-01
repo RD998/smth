@@ -101,7 +101,7 @@ function goToSubmit() {
     window.location.href = "index.html";
 }
 function BTH(){
-    window.location.href = "index.html";
+    window.location.href = "Home.html";
 }
 async function Login(){
     pwd=document.getElementById("dd").value;
@@ -126,3 +126,7 @@ async function Login(){
 
     }
 }
+function user_login(){
+    window.location.href="index.html";}
+function admin_login(){
+    window.location.href="admin_login.html";}
