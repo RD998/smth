@@ -108,7 +108,7 @@ async function Login(){
     response=fetch("https://whistle-drop-api.onrender.com/complaints/",{
         method:"GET",
         headers:{
-            "X-Mod-Password":pwd
+            "x-mod-password":pwd
         }
     })
     if(response.ok){
