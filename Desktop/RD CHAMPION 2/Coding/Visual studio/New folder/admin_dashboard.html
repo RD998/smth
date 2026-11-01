@@ -4,9 +4,9 @@
 </head>
 <body>
     <p id="complaint1"></p>
-    <script>window.onload=function(){
+    <script>
         parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
         document.getElementById("complaint1").innerText = JSON.stringify(parsedData, null, 2);
         
-    }</script><script src="main.js"></script>
+    </script><script src="main.js"></script>
 </body></html>
