@@ -119,8 +119,8 @@ async function Login(){
     }
     else{
         alert("Invalid password..Your session is terminated");
-        xq=document.getElementById("Login1").value;
-        xq2=document.getElementById("Login2").value;
+        xq=document.getElementById("Login1");
+        xq2=document.getElementById("Login2");
         xq2.style.display="none";
         xq.disabled=true;
 
