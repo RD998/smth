@@ -105,7 +105,7 @@ function BTH(){
 }
 async function Login(){
     pwd=document.getElementById("dd").value;
-    response=fetch("https://whistle-drop-api.onrender.com/complaints/",{
+    response=await fetch("https://whistle-drop-api.onrender.com/mod/complaints/",{
         method:"GET",
         headers:{
             "x-mod-password":pwd
