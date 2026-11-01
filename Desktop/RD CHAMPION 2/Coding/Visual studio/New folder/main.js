@@ -131,4 +131,39 @@ function user_login(){
     window.location.href="index.html";}
 function admin_login(){
     window.location.href="admin_login.html";}
+function display_complaints() {
+    const parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
+    //x= JSON.parse(parsedData, null, 2);
+    y=document.getElementById("tablo");
+    g=parsedData.length;
+    n=0;
+    for (z1 = 1; z1 <= g+n; z1++){
+        
+        console.log(z1);
+        n7=0;
+        for (i of parsedData){
+            if (i["id"]==z1){
+        x1=y.insertRow(-1)
+        x2=x1.insertCell(0);
+        x3=x1.insertCell(1);
+        x4=x1.insertCell(2);
+        x5=x1.insertCell(3);
+        x6=x1.insertCell(4);
+        x7=x1.insertCell(5);
+        x2.textContent=String(i["id"]);
+        x3.textContent=String(i["description"]);
+       
+        x4.textContent=String(i["hex_code"]);
+        x5.textContent=String(i["status"]);
+        x6.textContent=String(i["category"]);
+        x7.textContent=String(i["url"]);
+        n7=1;}
+        else{
+            continue;}
+    }
+    if(n7==0){
+        n+=1;
+    }
+}
 
+}

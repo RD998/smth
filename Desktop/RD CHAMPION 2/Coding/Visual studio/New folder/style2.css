@@ -17,6 +17,29 @@ body {
 #lbl{
     color: white;
 }
+tr:nth-child(even) {
+  background-color: rgba(18, 61, 160, 0.4);
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: rgba(18, 61, 160, 0.4);
+}
+table{
+    border: 1px black;
+    border-spacing: 0 0;
+    color: white;
+    background-color: rgb(16, 16, 16);
+    background-image: url("download.jpg");
+    table-layout: auto;
+}
+th{
+    color: white;
+    
+}
+th,td{
+    
+    padding-right: 30px;
+}
 a {
     text-decoration: none;
     color: #007BFF;

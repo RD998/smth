@@ -3,10 +3,19 @@
     <link rel="stylesheet" type="text/css" href="style2.css">
 </head>
 <body>
-    <p id="complaint1"></p>
+    <p id="complaint1"></p><center>
+    <table id="tablo" ><tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Hex_code</th>
+        <th>Status</th>
+        <th>Category</th>
+        <th>Url</th>
+    </tr>
+           </table></center>
+    <script src="main.js"></script>
     <script>
-        parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
-        document.getElementById("complaint1").innerText = JSON.stringify(parsedData, null, 2);
+        display_complaints();</script>
         
-    </script><script src="main.js"></script>
+    
 </body></html>
