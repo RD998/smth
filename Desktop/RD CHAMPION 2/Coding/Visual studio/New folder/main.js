@@ -1,3 +1,4 @@
+y=document.getElementById("tablo");
 async function submitComplaint(event) {
     event.preventDefault();
 
@@ -131,10 +132,13 @@ function user_login(){
     window.location.href="index.html";}
 function admin_login(){
     window.location.href="admin_login.html";}
+
 function display_complaints() {
+
     const parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
     //x= JSON.parse(parsedData, null, 2);
     y=document.getElementById("tablo");
+    globalThis=y;
     g=parsedData.length;
     n=0;
     for (z1 = 1; z1 <= g+n; z1++){
@@ -144,12 +148,15 @@ function display_complaints() {
         for (i of parsedData){
             if (i["id"]==z1){
         x1=y.insertRow(-1)
+        x1.dataset.id=i["id"];
+        x1.style.cursor="pointer";
         x2=x1.insertCell(0);
         x3=x1.insertCell(1);
         x4=x1.insertCell(2);
         x5=x1.insertCell(3);
         x6=x1.insertCell(4);
         x7=x1.insertCell(5);
+        x10=x1.insertCell(6);
         x2.textContent=String(i["id"]);
         x3.textContent=String(i["description"]);
        
@@ -157,6 +164,7 @@ function display_complaints() {
         x5.textContent=String(i["status"]);
         x6.textContent=String(i["category"]);
         x7.textContent=String(i["url"]);
+        x10.textContent=String("Submitted");
         n7=1;}
         else{
             continue;}
@@ -166,4 +174,22 @@ function display_complaints() {
     }
 }
 
+}
+y.addEventListener("click", function(event) {
+    complaintNo=event.target.closest("tr");
+    complaintID=complaintNo.dataset.id;
+    for (row of y.rows) {
+        row.style.opacity="100%";
+    }
+    
+    complaintNo.style.opacity="50%";
+    //complaintNo.style.filter = "blur(2px)";
+    
+
+})
+function Review(){
+    complaintNo.cells[6].textContent ="In Review";
+}
+function Completed(){
+    complaintNo.cells[6].textContent = "Completed";
 }

@@ -3,7 +3,12 @@
     <link rel="stylesheet" type="text/css" href="style2.css">
 </head>
 <body>
-    <p id="complaint1"></p><center>
+    <p id="complaint1"></p><span float="right">
+    <button class="btn btn-danger" onclick="Review()">In Review</button>
+<button class="btn btn-danger" onclick="Completed()">Completed</button>
+</span>
+    <center>
+    
     <table id="tablo" ><tr>
         <th>Id</th>
         <th>Description</th>
@@ -13,6 +18,8 @@
         <th>Url</th>
     </tr>
            </table></center>
+           <br>
+           <a id="Login2" class="btn btn-danger" onclick="BTH()">Back to Home</a>
     <script src="main.js"></script>
     <script>
         display_complaints();</script>
