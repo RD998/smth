@@ -1,195 +1,226 @@
-y=document.getElementById("tablo");
-async function submitComplaint(event) {
-    event.preventDefault();
-
-    const resultBox = document.getElementById("submissionResult");
-    const form = document.getElementById("complaintForm");
-
-    resultBox.innerText = "Submitting (this may take a few seconds)...";
-    resultBox.style.color = "black";
-
-    // Grab the URL and remove any accidental spaces
-    let urlValue = document.getElementById("urlInput").value.trim();
-
-    const payload = {
-        category: document.getElementById("categoryInput").value,
-        description: document.getElementById("descInput").value,
-        url: urlValue === "" ? null : urlValue
-    };
-
-    try {
-        const response = await fetch("https://whistle-drop-api.onrender.com/complaints", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-
-        // 1. If it was successful
-        if (response.ok) {
-            const data = await response.json();
-            resultBox.innerHTML = `
-                <span style="color: green;">Success! Your tracking code is:</span><br>
-                <span style="font-size: 24px; color: #0056b3; letter-spacing: 2px;">${data.hex_code}</span><br>
-                <span style="color: red; font-size: 14px;">Save this code! You cannot recover it later.</span>
-            `;
-            form.reset();
-        } 
-        // 2. IF FASTAPI REJECTS THE DATA (Bad Request)
-        else {
-            // Read the raw text of the error so JS doesn't crash
-            const errorText = await response.text(); 
-            console.error("Server Error:", errorText);
-            
-            // Print the exact error to the screen
-            resultBox.innerText = `Backend rejected data (Status ${response.status}): ${errorText}`;
-            resultBox.style.color = "red";
-        }
-    } catch (error) {
-        // 3. If the network completely fails
-        resultBox.innerText = `Browser/Code Error: ${error.message}`;
-        resultBox.style.color = "red";
-    }
-}
-// --- CHECK STATUS LOGIC ---
-async function checkStatus() {
-    const hexCode = document.getElementById("hexInput").value.trim();
-    const resultBox = document.getElementById("resultBox");
-
-    if (!hexCode) {
-        resultBox.innerText = "Please enter a hex code.";
-        resultBox.style.color = "red";
-        return;
-    }
-
-    resultBox.innerText = "Searching (this may take a few seconds)...";
-    resultBox.style.color = "black";
-
-    try {
-        // Ensure this is exactly your Render URL
-        const response = await fetch(`https://whistle-drop-api.onrender.com/complaints/${hexCode}`);
-        
-        // 1. If it was successful
-        if (response.ok) {
-            const data = await response.json();
-            resultBox.innerHTML = `
-                <p>Category: <strong>${data.category}</strong></p>
-                <p>Status: <span style="color: #0056b3; font-size: 18px;">${data.status}</span></p>
-            `;
-        } 
-        // 2. If the hex code is just wrong
-        else if (response.status === 404) {
-            resultBox.innerText = "Complaint not found. Check your hex code.";
-            resultBox.style.color = "red";
-        } 
-        // 3. IF FASTAPI REJECTS IT (e.g., 422 Validation Error)
-        else {
-            const errorText = await response.text(); 
-            resultBox.innerText = `Backend Error (${response.status}): ${errorText}`;
-            resultBox.style.color = "red";
-        }
-    } catch (error) {
-        // 4. Print the exact browser error instead of a generic message
-        resultBox.innerText = `Browser/Code Error: ${error.message}`;
-        resultBox.style.color = "red";
-    }
-}
-function goToCheckStatus() {
-    window.location.href = "status.html";
-}
-function goToSubmit() {
-    window.location.href = "index.html";
-}
-function BTH(){
-    window.location.href = "Home.html";
-}
-async function Login(){
-    pwd=document.getElementById("dd").value;
-    response=await fetch("https://whistle-drop-api.onrender.com/mod",{
-        method:"GET",
-        headers:{
-            "x-mod-password":pwd
-        }
-    })
-    if(response.ok){
-         data = await response.json();
-         console.log("Full Python Response:", data);
-         sessionStorage.setItem("complaintData", JSON.stringify(data));
-        window.location.href = "admin_dashboard.html";
-        
-    }
-    else{
-        alert("Invalid password..Your session is terminated");
-        xq=document.getElementById("Login1");
-        xq2=document.getElementById("Login2");
-        xq2.style.display="none";
-        xq.disabled=true;
-
-    }
-}
-function user_login(){
-    window.location.href="index.html";}
-function admin_login(){
-    window.location.href="admin_login.html";}
-
-function display_complaints() {
-
-    const parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
-    //x= JSON.parse(parsedData, null, 2);
     y=document.getElementById("tablo");
-    globalThis=y;
-    g=parsedData.length;
-    n=0;
-    for (z1 = 1; z1 <= g+n; z1++){
-        
-        console.log(z1);
-        n7=0;
-        for (i of parsedData){
-            if (i["id"]==z1){
-        x1=y.insertRow(-1)
-        x1.dataset.id=i["id"];
-        x1.style.cursor="pointer";
-        x2=x1.insertCell(0);
-        x3=x1.insertCell(1);
-        x4=x1.insertCell(2);
-        x5=x1.insertCell(3);
-        x6=x1.insertCell(4);
-        x7=x1.insertCell(5);
-        x10=x1.insertCell(6);
-        x2.textContent=String(i["id"]);
-        x3.textContent=String(i["description"]);
-       
-        x4.textContent=String(i["hex_code"]);
-        x5.textContent=String(i["status"]);
-        x6.textContent=String(i["category"]);
-        x7.textContent=String(i["url"]);
-        x10.textContent=String("Submitted");
-        n7=1;}
+    async function submitComplaint(event) {
+        event.preventDefault();
+
+        const resultBox = document.getElementById("submissionResult");
+        const form = document.getElementById("complaintForm");
+
+        resultBox.innerText = "Submitting (this may take a few seconds)...";
+        resultBox.style.color = "black";
+
+        // Grab the URL and remove any accidental spaces
+        let urlValue = document.getElementById("urlInput").value.trim();
+
+        const payload = {
+            category: document.getElementById("categoryInput").value,
+            description: document.getElementById("descInput").value,
+            url: urlValue === "" ? null : urlValue
+        };
+
+        try {
+            const response = await fetch("https://whistle-drop-api.onrender.com/complaints", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            // 1. If it was successful
+            if (response.ok) {
+                const data = await response.json();
+                resultBox.innerHTML = `
+                    <span style="color: green;">Success! Your tracking code is:</span><br>
+                    <span style="font-size: 24px; color: #0056b3; letter-spacing: 2px;">${data.hex_code}</span><br>
+                    <span style="color: red; font-size: 14px;">Save this code! You cannot recover it later.</span>
+                `;
+                form.reset();
+            } 
+            // 2. IF FASTAPI REJECTS THE DATA (Bad Request)
+            else {
+                // Read the raw text of the error so JS doesn't crash
+                const errorText = await response.text(); 
+                console.error("Server Error:", errorText);
+                
+                // Print the exact error to the screen
+                resultBox.innerText = `Backend rejected data (Status ${response.status}): ${errorText}`;
+                resultBox.style.color = "red";
+            }
+        } catch (error) {
+            // 3. If the network completely fails
+            resultBox.innerText = `Browser/Code Error: ${error.message}`;
+            resultBox.style.color = "red";
+        }
+    }
+    // --- CHECK STATUS LOGIC ---
+    async function checkStatus() {
+        const hexCode = document.getElementById("hexInput").value.trim();
+        const resultBox = document.getElementById("resultBox");
+
+        if (!hexCode) {
+            resultBox.innerText = "Please enter a hex code.";
+            resultBox.style.color = "red";
+            return;
+        }
+
+        resultBox.innerText = "Searching (this may take a few seconds)...";
+        resultBox.style.color = "black";
+
+        try {
+            // Ensure this is exactly your Render URL
+            const response = await fetch(`https://whistle-drop-api.onrender.com/complaints/${hexCode}`);
+            
+            // 1. If it was successful
+            if (response.ok) {
+                const data = await response.json();
+                resultBox.innerHTML = `
+                    <p>Category: <strong>${data.category}</strong></p>
+                    <p>Status: <span style="color: #0056b3; font-size: 18px;">${data.status}</span></p>
+                `;
+            } 
+            // 2. If the hex code is just wrong
+            else if (response.status === 404) {
+                resultBox.innerText = "Complaint not found. Check your hex code.";
+                resultBox.style.color = "red";
+            } 
+            // 3. IF FASTAPI REJECTS IT (e.g., 422 Validation Error)
+            else {
+                const errorText = await response.text(); 
+                resultBox.innerText = `Backend Error (${response.status}): ${errorText}`;
+                resultBox.style.color = "red";
+            }
+        } catch (error) {
+            // 4. Print the exact browser error instead of a generic message
+            resultBox.innerText = `Browser/Code Error: ${error.message}`;
+            resultBox.style.color = "red";
+        }
+    }
+    function goToCheckStatus() {
+        window.location.href = "status.html";
+    }
+    function goToSubmit() {
+        window.location.href = "index.html";
+    }
+    function BTH(){
+        window.location.href = "Home.html";
+    }
+    async function Login(){
+        pwd=document.getElementById("dd").value;
+        response=await fetch("https://whistle-drop-api.onrender.com/mod",{
+            method:"GET",
+            headers:{
+                "x-mod-password":pwd
+            }
+        })
+        if(response.ok){
+            data = await response.json();
+            console.log("Full Python Response:", data);
+            sessionStorage.setItem("complaintData", JSON.stringify(data));
+            window.location.href = "admin_dashboard.html";
+            
+        }
         else{
-            continue;}
-    }
-    if(n7==0){
-        n+=1;
-    }
-}
+            alert("Invalid password..Your session is terminated");
+            xq=document.getElementById("Login1");
+            xq2=document.getElementById("Login2");
+            xq2.style.display="none";
+            xq.disabled=true;
 
-}
-y.addEventListener("click", function(event) {
-    complaintNo=event.target.closest("tr");
-    complaintID=complaintNo.dataset.id;
-    for (row of y.rows) {
-        row.style.opacity="100%";
+        }
     }
-    
-    complaintNo.style.opacity="50%";
-    //complaintNo.style.filter = "blur(2px)";
-    
+    function user_login(){
+        window.location.href="index.html";}
+    function admin_login(){
+        window.location.href="admin_login.html";}
 
-})
-function Review(){
-    complaintNo.cells[6].textContent ="In Review";
-}
-function Completed(){
-    complaintNo.cells[6].textContent = "Completed";
-}
+    function display_complaints() {
+
+        const parsedData = JSON.parse(sessionStorage.getItem("complaintData"));
+        //x= JSON.parse(parsedData, null, 2);
+        y=document.getElementById("tablo");
+        g=parsedData.length;
+        n=0;
+        for (z1 = 1; z1 <= g+n; z1++){
+            
+            console.log(z1);
+            n7=0;
+            for (i of parsedData){
+                if (i["id"]==z1){
+            x1=y.insertRow(-1)
+            x1.dataset.id=i["id"];
+            x1.style.cursor="pointer";
+            x2=x1.insertCell(0);
+            x3=x1.insertCell(1);
+            x4=x1.insertCell(2);
+            x5=x1.insertCell(3);
+            x6=x1.insertCell(4);
+            x7=x1.insertCell(5);
+            x10=x1.insertCell(6);
+            x2.textContent=String(i["id"]);
+            x3.textContent=String(i["description"]);
+        
+            x4.textContent=String(i["hex_code"]);
+            x5.textContent=String(i["status"]);
+            x6.textContent=String(i["category"]);
+            x7.textContent=String(i["url"]);
+            x10.textContent=String("SUBMITTED");
+            n7=1;}
+            else{
+                continue;}
+        }
+        if(n7==0){
+            n+=1;
+        }
+    }}
+
+
+    y.addEventListener("click", function(event) {
+        complaintNo=event.target.closest("tr");
+        complaint_id=complaintNo.dataset.id;
+        for (row of y.rows) {
+            row.style.opacity="100%";
+        }
+        
+        complaintNo.style.opacity="50%";
+        Btn_comp=document.getElementById("completedBtn");
+        Btn_rev=document.getElementById("reviewBtn");
+
+        if(complaintNo.cells[6].textContent=="SUBMITTED"){
+            
+            Btn_rev.disabled=true;
+            Btn_comp.disabled=true;
+        }
+        else if(complaintNo.cells[6].textContent=="In Review"){
+            Btn_rev.disabled=true;
+            Btn_comp.disabled=false;
+        }
+        else{
+            Btn_rev.disabled=true;
+            Btn_comp.disabled=true;
+        }    
+        //complaintNo.style.filter = "blur(2px)";
+        
+
+    })
+    async function Review(){
+        
+        complaintNo.cells[6].textContent ="In Review";
+        const response = await fetch(`https://whistle-drop-api.onrender.com/mod/complaints/${complaint_id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "x-mod-password":pwd
+            },
+            body: JSON.stringify({ status: "In Review" })
+        });
+    }
+    async function Completed(){
+        complaintNo.cells[6].textContent = "Completed";
+        const response = await fetch(`https://whistle-drop-api.onrender.com/mod/complaints/${complaint_id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "x-mod-password":pwd
+            },
+            body: JSON.stringify({ status: "Completed" })
+        })};
