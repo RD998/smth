@@ -1,14 +1,70 @@
+data = {};
 async function Preferences() {
-    x0=document.getElementById('language1').value;
-    x1=document.querySelectorAll('input[name="accessibility"]:checked');
-    x2=Array.from(x1).map(cb => cb.value);
+    const x0=document.getElementById('language1').value;
+    const x1=document.querySelectorAll('input[name="accessibility"]');
+    const x2=Array.from(x1).map(cb => cb.value);
+    checkedlist={};
+    x1.forEach(cb => {
+        checkedlist[cb.value] = cb.checked;});
 
-    console.log(x0,x2);
-/*const response = await fetch('/api/preferences');
-method: 'Post',
-x= await response.json();
-}*/}
+        console.log(checkedlist);
+    
+    console.log(x0);
+        const lang=document.getElementById('language1').value;
+        checkedlist["language"]=lang;
+        const queryig=new URLSearchParams(checkedlist).toString();
+        const response = await fetch(`https://pathfinder-backend-2u7u.onrender.com/facilities?${queryig}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                
+            });
+        if(response.ok) {
+            const data = await response.json();
+            console.log(data);
+            
 
+        
+        }
+        else{
+            console.log("failed to fetch data");
+        }
+    }
+function Display_Clinics() {
+    
+}
+    /*
+Sort=document.getElementById('Sort');
+Sort.addEventListener('change', function() {
+    const selectedOption = Sort.value;
+    if(selectedOption === 'distance') {
+        Dist_Sort();}
+    else if(selectedOption === 'rating') {
+        Rat_Sort();}
+});*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                            CUSTOM LOGIN
  function showCustomPrompt() {
             var username = sessionStorage.getItem('username');
             if (!username) {
