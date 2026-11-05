@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section>
+        <div class="header">
+            <img src="" alt="Logo" height="60px">
+            <h1>WebApp</h1>
+        </div>
+    </section>
+
+    <section>
+        <div class="sidebar" id="sidebar">
+            <a onclick="sb_open()" id="btn0">☰</a>
+            <a onclick="sb_close()" id="btn1">X</a>
+            <a href="apps.html" id="a0"><img src="assets/img/applist.png" id="SBall" height="30px">All Apps</a>
+            <a href="apps.html" id="a3"><img src="assets/img/applist.png" id="SBall" height="30px" width="36px"></a>
+            <a href="search.html" id="a1"><img src="assets/img/sbSearch.png" id="SBsearch" height="36px">Discover</a>
+            <a href="search.html" id="a2"><img src="assets/img/sbSearch.png" id="SBsearch" height="36px"
+                    width="40px"></a>
+        </div>
+
+        <div class="navbar" id="navbar">
+            <div class="navitems">
+                <a href="apps.html" id="a0"><img src="assets/img/applist.png" id="SBall" height="30px">All Apps</a>
+                <a href="search.html" id="a1"><img src="assets/img/sbSearch.png" id="SBsearch"
+                        height="36px">Discover</a>
+            </div>
+            <a onclick="closeNav()" id="btn1">X</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="content" id="content">
+            <a id="Nava" onclick="openNav()" id="abtn0">☰</a>
+
+            <h2>Welcome <span id="username"></span> to our WebApp</h2>
+
+            <hr>
+
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search.." name="search" onkeyup="searchWebsite()">
+                <button type="submit">Search</button>
+                <!-- <ul id="suggestion_box"></ul> -->
+            </div>
+
+            <h3 id="recom" align="center" style="font-size: 28px;font-weight: lighter;">Our Recommendations</h3>
+
+            <div class="appcards" id="appcards">
+                <div class="card" id="card">
+                    <img src="assets/img/apps/huggingface.png" alt="Hugging" height="88px">
+                    <h3 class="key">Hugging Chat</h3>
+                    <p>Making the community's best AI chat models available to everyone. New Chat UI is now open Sourced
+                    </p>
+                    <center><a class="button" href="https://huggingface.co/chat/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/humata.png" alt="humanta" height="88px">
+                    <h3 class="key">humanta</h3>
+                    <p>Ask questions about your data and get answers powered by AI instantly.</p>
+                    <center><a class="button" href="https://www.humata.ai/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/proto.png" alt="Proto.io">
+                    <h3 class="key">Proto.io</h3>
+                    <p>Bring your idea to life in no time. The prototyping solution for all your needs.</p>
+                    <center><a class="button" href="https://proto.io/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/miro.png" alt="Miro" height="88px">
+                    <h3 class="key">Miro</h3>
+                    <p>Bring your idea to life in no time. The prototyping solution for all your needs.</p>
+                    <center><a class="button" href="https://miro.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/uxpin.png" alt="uxpin">
+                    <h3 class="key">UXPin</h3>
+                    <p>Design with the same components that devs build products with.</p>
+                    <center><a class="button" href="https://www.uxpin.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/chatpdf.png" alt="chatPDF" height="88px">
+                    <h3 class="key">ChatPDF</h3>
+                    <p>Simply upload a PDF and ask a question it will give you the answer.</p>
+                    <center><a class="button" href="https://www.chatpdf.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/gamma.png" alt="Gamma">
+                    <h3 class="key">Gamma</h3>
+                    <p>It can convert any journal article into a presentation</p>
+                    <center><a class="button" href="https://gamma.app/" target="">Open</a></center>
+                </div>
+                <div class="card" id="card">
+                    <img src="assets/img/apps/xtiles.png" alt="xtiles" height="88px">
+                    <h3 class="key">xTiles</h3>
+                    <p>Organise ideas and projects in a visual way</p>
+                    <center><a class="button" href="https://xtiles.app/en" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/wiseone.png" alt="Wiseone">
+                    <h3 class="key">Wiseone</h3>
+                    <p>It summariizes the research paper for you and it is a chrome extention</p>
+                    <center><a class="button" href="https://wiseone.io/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/youchat.png" alt="youchat" height="88px">
+                    <h3 class="key">YouChat</h3>
+                    <p>It's a search engine built on artificial intelligence that provides users with a customized
+                        search experience.
+                    </p>
+                    <center><a class="button" href="https://you.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/chatsonic.png" alt="chatsonic" height="88px">
+                    <h3 class="key">Chat Sonic</h3>
+                    <p>A revolutionary AI like Chat GPT - Chatsonic (now with GPT-4 capabilities), the conversational AI
+                        NLP processor</p>
+                    <center><a class="button" href="https://writesonic.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/topcoder.png" alt="topcoder" height="88px">
+                    <h3 class="key">TopCoder</h3>
+                    <p>Topcoder can help you with: ; Data Science. Explore, Predict, Optimize, and Solve Your Data
+                        Problems</p>
+                    <center><a class="button" href="https://www.topcoder.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/tinkercad.png" alt="tinkercad" height="88px">
+                    <h3 class="key">TinkerCad</h3>
+                    <p>Tinkercad is a free web app for 3D design, electronics, and coding, trusted by people around the
+                        world.</p>
+                    <center><a class="button" href="https://www.tinkercad.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/codetester.png" alt="codetester" height="88px">
+                    <h3 class="key">Code Tester</h3>
+                    <p>Free online code testing and remote execution tools. Run Some Code. Just run some code and see
+                        the output</p>
+                    <center><a class="button" href="https://codetester.io/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/jsfiddle.png" alt="jsfiddle" height="88px">
+                    <h3 class="key">js fiddle</h3>
+                    <p>Test your JavaScript, CSS, HTML or CoffeeScript online with JSFiddle code editor.</p>
+                    <center><a class="button" href="https://jsfiddle.net/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/snyk.png" alt="snyk" height="88px">
+                    <h3 class="key">snyk</h3>
+                    <p>Snyk Integrates directly into development tools, workflows, and automation pipelines</p>
+                    <center><a class="button" href="https://snyk.io/code-checker/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/scratch.png" alt="Scratch" height="88px">
+                    <h3 class="key">Scratch</h3>
+                    <p>Scratch is the world's largest free coding community for kids</p>
+                    <center><a class="button" href="https://scratch.mit.edu/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/blockly.png" alt="blockly" height="88px">
+                    <h3 class="key">blockly</h3>
+                    <p>The Blockly library adds an editor to your app that represents coding concepts as interlocking
+                        blocks.</p>
+                    <center><a class="button" href="https://developers.google.com/blockly" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/tynker.png" alt="tynker" height="88px">
+                    <h3 class="key">Tynker</h3>
+                    <p>Tynker is the world's leading K-12 creative coding platform, enabling students of all ages to
+                        learn to code at home, school, and on the go.</p>
+                    <center><a class="button" href="https://www.tynker.com/#/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/vexcode_vr.png" alt="VEXcodeVR" height="88px">
+                    <h3 class="key">VEXcode VR.</h3>
+                    <p>VEXcode VR is an easy to use platform that allows you to code a virtual robot using either
+                        Block-based coding</p>
+                    <center><a class="button" href="https://vr.vex.com/" target="">Open</a></center>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/makeblock.png" alt="makeblock" height="88px">
+                    <h3 class="key">Make Block</h3>
+                    <p>Makeblock makes it easy for kids to start coding and making with various robot kits, free coding
+                        software, and rich educational resources.
+                    </p>
+                    <center><a class="button" href="https://mblock.makeblock.com/en/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/gamesalad.png" alt="gamesalad " height="88px">
+                    <h3 class="key">game salad</h3>
+                    <p>GameSalad prepares your kids to learn to code by letting them build video games.</p>
+                    <center><a class="button" href="https://gamesalad.com/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/snap.png" alt="snap " height="88px">
+                    <h3 class="key">snap</h3>
+                    <p>Snap! is a broadly inviting programming language for kids and adults.</p>
+                    <center><a class="button" href="https://snap.berkeley.edu/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/codejig.png" alt="codejig " height="88px">
+                    <h3 class="key">codejig</h3>
+                    <p>Codejig is a low-code application development platform crafted to help you build business apps
+                        faster.</p>
+                    <center><a class="button" href="https://www.codejig.com/en/block-based-coding/" target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/rytr.png" alt="rytr " height="88px">
+                    <h3 class="key">rytr</h3>
+                    <p>Rytr is an AI writing assistant that helps you create high-quality content, in just a few
+                        seconds, at a fraction of the cost!</p>
+                    <center><a class="button" href="https://app.rytr.me/create/file/64ac3eb2075b04af1b098d52"
+                            target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/craiyon.png" alt="craiyon" height="88px">
+                    <h3 class="key">craiyon</h3>
+                    <p>Craiyon is a free AI art generator. Turn your words into the best AI art using AI image
+                        generator. Fun, Fast and Free!</p>
+                    <center><a class="button" href="https://www.craiyon.com/" target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/letsenhance.png" alt="letsenhance" height="88px">
+                    <h3 class="key">lets enhance</h3>
+                    <p>Let's Enhance is an automated AI image upscaler and fixer. It uses Super Resolution technology.
+                    </p>
+                    <center><a class="button" href="https://letsenhance.io/boost" target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/wordtune.png" alt="word tune" height="88px">
+                    <h3 class="key">word tune</h3>
+                    <p>Get AI-powered suggestions to instantly improve everything you write</p>
+                    <center><a class="button" href="https://www.wordtune.com/wordtune-story" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/grammarly.png" alt="grammarly" height="88px">
+                    <h3 class="key">grammarly</h3>
+                    <p>Grammarly helps you write mistake-free in Gmail, Facebook, Twitter, LinkedIn, and any other app
+                        you use.</p>
+                    <center><a class="button" href="https://www.grammarly.com/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/lexica.png" alt="lexica" height="88px">
+                    <h3 class="key">lexica</h3>
+                    <p>The Stable Diffusion search engine and ai that generates desired images.</p>
+                    <center><a class="button" href="https://lexica.art/" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/writer.png" alt="writer" height="88px">
+                    <h3 class="key">writer</h3>
+                    <p>Accelerate growth with the most secure AI platform. We customize generative AI to your workflows.
+                    </p>
+                    <center><a class="button" href="https://writer.com/ai-content-detector" target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/crossplag.png" alt="crossplag" height="88px">
+                    <h3>crossplag</h3>
+                    <p>Crossplag is the most holistic tool for plagiarism checking dedicated to plagiarism checking.</p>
+                    <center><a class="button" href="https://crossplag.com/ai-content-detector/
+                        " target="">Open</a></center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/copyleaks.png" alt="copyleaks" height="88px">
+                    <h3>copyleaks</h3>
+                    <p>Instantly detect plagiarized content, AI generated content & more with Copyleaks, the only
+                        AI-based platform used by millions worldwide.
+                    </p>
+                    <center><a class="button" href="https://copyleaks.com/ai-content-detector" target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+                <div class="card" id="nonecard">
+                    <img src="assets/img/apps/contentatscale.png" alt="contentatscale" height="88px">
+                    <h3>content at scale</h3>
+                    <p>Content at Scale writes fact-based content automatically with links inside the content it writes.
+                    </p>
+                    <center><a class="button" href="https://contentatscale.ai/ai-content-detector/" target="">Open</a>
+                    </center>
+                    </di>
+                </div>
+            </div>
+    </section>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/search.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 220,
+            duration: 600,
+        });
+    </script>
+
+</body>
+
+</html>
