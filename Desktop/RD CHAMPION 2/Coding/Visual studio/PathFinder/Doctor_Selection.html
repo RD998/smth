@@ -1,0 +1,277 @@
+<html>
+<head>
+    <style>
+    /* Modern SaaS Clean CSS - Upgraded */
+    :root {
+        --primary-blue: #0A58CA;
+        --primary-hover: #084298;
+        --light-blue: #E9F2FF;
+        --text-dark: #1E293B;
+        --text-muted: #64748B;
+        --bg-light: #F8FAFC;
+        --white: #FFFFFF;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+        --hover-shadow: 0 20px 25px -5px rgba(10, 88, 202, 0.1), 0 8px 10px -6px rgba(10, 88, 202, 0.1);
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Replaced flat gray with a premium subtle gradient */
+        background: linear-gradient(135deg, var(--bg-light) 0%, #E2E8F0 100%);
+        background-attachment: fixed;
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 20px 40px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .header-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--primary-blue);
+        margin: 0;
+        letter-spacing: -0.5px;
+    }
+
+    .back-btn {
+        background: transparent;
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        padding: 8px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+        transform: translateY(-1px);
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers the floating text shown in your screenshot */
+    }
+
+    /* Page Titles */
+    main h2 {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        color: var(--text-dark);
+        text-align: center;
+    }
+
+    main > p {
+        color: var(--text-muted);
+        font-size: 16px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Enhanced Filter Section */
+    .filter-section {
+        background: var(--white);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 50px;
+        text-align: center;
+        width: 100%;
+        max-width: 700px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .filter-section select {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-dark);
+        background-color: var(--bg-light);
+        border: 2px solid #E2E8F0;
+        border-radius: 12px;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        appearance: none; /* Removes default browser arrow */
+        /* Custom modern arrow */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230A58CA'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        background-size: 20px;
+    }
+
+    .filter-section select:focus, .filter-section select:hover {
+        border-color: var(--primary-blue);
+        background-color: var(--white);
+        box-shadow: 0 0 0 4px var(--light-blue);
+    }
+
+    /* App Cards Grid */
+    .appcards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        width: 100%;
+    }
+
+    /* Doctor Card Styling */
+    .card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 30px 24px;
+        box-shadow: var(--card-shadow);
+        text-align: center;
+        border: 1px solid #F1F5F9;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--hover-shadow);
+        border-color: var(--light-blue);
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 4px solid var(--light-blue);
+        background-color: var(--bg-light);
+    }
+
+    .card h3 {
+        margin: 0 0 8px 0;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-dark);
+        word-wrap: break-word;
+    }
+
+    .card .specialty {
+        color: var(--primary-blue);
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0 0 16px 0;
+        background: var(--light-blue);
+        padding: 4px 12px;
+        border-radius: 20px;
+    }
+
+    .card .tags {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+    }
+
+    .card .tag {
+        background: var(--bg-light);
+        color: var(--text-muted);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #E2E8F0;
+    }
+
+    /* Flexbox Button Container for Side-by-Side alignment */
+    .card .button-container {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        justify-content: center;
+        margin-top: auto;
+    }
+
+    .card .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        text-decoration: none;
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .card .button:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+        transform: translateY(-2px);
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Vital Path</h1>
+        <button class="back-btn" onclick="window.history.back()">← Back to Hospitals</button>
+    </header>
+
+    <!-- You MUST wrap your content in <main> for the CSS to work -->
+    <main>
+        <h2 id="hospital-name-display">Select a Department</h2>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Filter by specialty to see available doctors at this facility.</p>
+
+        <div class="filter-section">
+            <select id="department-select">
+                <option value="" disabled selected>Select a Department...</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="General Medicine">General Medicine</option>
+                <option value="Neurology">Neurology</option>
+            </select>
+        </div>
+
+        <div id="doctor-results" class="appcards">
+            
+        </div>
+    </main>
+    <h2 data-i18n="select_dept" id="hospital-name-display">Select a Department</h2>
+<p data-i18n="filter_desc" style="color: var(--text-muted);">Filter by specialty to see available doctors.</p>
+
+<div class="filter-section">
+    <select id="department-select">
+        <option value="" disabled selected data-i18n="choose_dept">Select a Department...</option>
+        <option value="Orthopedics" data-i18n="ortho">Orthopedics</option>
+    </select>
+</div>
+
+    <script src="main.js"></script>
+</body>
+</html>
