@@ -1,0 +1,189 @@
+<html><head>
+<title>Vital Path - Book Slot</title></head>
+ <body>  <style>
+        :root {
+            --primary-blue: #0A58CA;
+            --primary-hover: #084298;
+            --light-blue: #E9F2FF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --bg-light: #F8FAFC;
+            --white: #FFFFFF;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #E2E8F0 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+        }
+
+        .booking-container {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .date-picker-wrapper {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .date-picker-wrapper label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        input[type="date"] {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            outline: none;
+            color: var(--text-dark);
+            font-family: inherit;
+            background-color: var(--bg-light);
+            cursor: pointer;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .slot-btn {
+            background: var(--bg-light);
+            border: 2px solid #E2E8F0;
+            color: var(--text-dark);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .slot-btn:hover:not(.disabled) {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .slot-btn.selected {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .confirm-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+    </style>
+
+
+    <header>
+        <h1 class="header-title">Vital Path</h1>
+        <button class="back-btn" onclick="window.history.back()">← Back</button>
+    </header>
+
+    <main>
+        <h2>Select a Time Slot</h2>
+        
+        <div class="booking-container">
+            <div class="date-picker-wrapper">
+                <label for="appointment-date">Available Date</label>
+                <input type="date" id="appointment-date" />
+            </div>
+
+            <div class="slots-grid" id="slots-container"></div>
+
+            <button class="confirm-btn" onclick="Book_Slot()" id="confirm-btn" disabled>Confirm Booking</button>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+    <script>Show_slot();</script>
+</body>
+</html>
